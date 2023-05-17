@@ -1,0 +1,8 @@
+#
+웹 용 React와 달리 Button 같은 것도 import 해야함.
+---
+React Native에서는 px를 사용하면 안된다. 숫자만 사용.
+border도 사용하면 안된다. 이렇게 써야 함. -> borderWidth: 10, borderColor : #eee
+---
+##
+간단하게 요약하면 리액트네이티브 전용 속성이나 태그, 사용법을 숙지해야 함.
