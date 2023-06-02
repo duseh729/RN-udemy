@@ -1,16 +1,28 @@
-import { StatusBar } from "expo-status-bar";
 // 웹 용 React와 달리 Button 같은 것도 import 해야함.
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { react, useState } from "react";
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCoursGoals] = useState([]);
+
+  const goalInputHandler = (enteredText) => {
+    setEnteredGoalText(enteredText);
+  };
+
+  const addGoalHandler = () => {
+    setCoursGoals((currentCourseGoals) => [...currentCourseGoals, enteredGoalText]);
+  };
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Your course goal!" />
-        <Button title="Add Goal" />
+        <TextInput style={styles.textInput} placeholder="Your course goal!" onChangeText={goalInputHandler} />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
-      <View>
-        <Text>List of goals..</Text>
+      <View style={styles.goalsContainer}>
+        {courseGoals.map((goal) => (
+          <Text key={goal}>{goal}</Text>
+        ))}
       </View>
     </View>
   );
@@ -18,17 +30,27 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    padding: 50,
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#cccccc",
-    width: "80%",
+    width: "70%",
     marginRight: 8,
     padding: 8,
+  },
+  goalsContainer: {
+    flex: 5,
   },
 });

@@ -1,0 +1,17 @@
+#
+리액트 네이티브의 View는 Flex-box가 기본값이다.
+---
+##
+flex는 column이 기본값이고 가로로 바꾸려면
+flexDirection : "row" 값을 주면 된다.
+##
+flexDirection : "row-reverse"를 주면 자식 요소들이 반대로 출력된다.
+flexDirection : "column-reverse"도 있다.
+---
+##
+자식 항목안에 flex: 1 프로퍼티를 추가하면
+플렉스 박스 안에 해당 프로퍼티가 적용된다.
+flex: '숫자' 는 적용하면 부모 요소의 크기의 얼마만큼 차지할 지 적용하는 거 같다.
+---
+##
+수평축 수직축이 중요한 말인가 보다.
