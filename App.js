@@ -12,6 +12,12 @@ export default function App(enteredGoalText) {
     setCoursGoals((currentCourseGoals) => [...currentCourseGoals, { text: enteredGoalText, id: Math.random().toString() }]);
   };
 
+  const deleteGoalHandler = (id) => {
+    setCoursGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler} />
@@ -21,7 +27,7 @@ export default function App(enteredGoalText) {
           renderItem={(itemData) => {
             return (
               // View로 감싼 이유는 ios에서는 Text 컴포넌트에 borderRadius가 적용되지 않음.
-              <GoalItem text={itemData.item.text} />
+              <GoalItem text={itemData.item.text} id={itemData.item.id} onDeleteItem={deleteGoalHandler} />
             );
           }}
           keyExtractor={(item, index) => {
