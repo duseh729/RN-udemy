@@ -1,5 +1,5 @@
 // 웹 용 React와 달리 Button 같은 것도 import 해야함.
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from "react-native";
 import { react, useState } from "react";
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
   };
 
   const addGoalHandler = () => {
-    setCoursGoals((currentCourseGoals) => [...currentCourseGoals, enteredGoalText]);
+    setCoursGoals((currentCourseGoals) => [...currentCourseGoals, { text: enteredGoalText, id: Math.random().toString() }]);
   };
   return (
     <View style={styles.appContainer}>
@@ -21,14 +21,20 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals.map((goal) => (
-            // View로 감싼 이유는 ios에서는 Text 컴포넌트에 borderRadius가 적용되지 않음.
-            <View key={goal} style={styles.goalItem}>
-              <Text style={styles.goalText}>{goal}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              // View로 감싼 이유는 ios에서는 Text 컴포넌트에 borderRadius가 적용되지 않음.
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+        ></FlatList>
       </View>
     </View>
   );
