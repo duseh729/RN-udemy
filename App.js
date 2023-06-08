@@ -1,5 +1,5 @@
 // 웹 용 React와 달리 Button 같은 것도 import 해야함.
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from "react-native";
 import { react, useState } from "react";
 
 export default function App() {
@@ -21,12 +21,14 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => (
-          // View로 감싼 이유는 ios에서는 Text 컴포넌트에 borderRadius가 적용되지 않음.
-          <View key={goal} style={styles.goalItem}>
-            <Text style={styles.goalText}>{goal}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {courseGoals.map((goal) => (
+            // View로 감싼 이유는 ios에서는 Text 컴포넌트에 borderRadius가 적용되지 않음.
+            <View key={goal} style={styles.goalItem}>
+              <Text style={styles.goalText}>{goal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
