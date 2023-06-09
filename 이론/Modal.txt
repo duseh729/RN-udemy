@@ -1,0 +1,5 @@
+#
+RN에는 Modal이란 컴포넌트가 존재한다.
+Modal은 특정 컴포넌트만 보이게 하는 것 같음.
+visible로 보이는 것이 제어 가능하고,
+animationType으로 animation을 넣을 수 있다.
